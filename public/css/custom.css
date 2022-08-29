@@ -1,0 +1,44 @@
+:root {
+    --white: #fff;
+    --grey: #dddddd;
+    --red-listed: #ff6347;
+}
+
+.bg-white{
+    background-color: var(--white);
+}
+.bg-grey{
+    background-color: var(--grey);
+}
+
+.text-red{
+    color: var(--red-listed);
+}
+.fs-16{
+    font-size: 16px;
+}
+.fs-22{
+    font-size: 22px;
+}
+
+.fw-600{
+    font-weight: 600;
+}
+.rounded-0{
+    border-radius: 0px;
+}
+.card{
+    top: 0;
+    min-height: 500px!important;
+}
+.card-header{
+    background-color: var(--red-listed);
+}
+.tasks-bar{
+    width: 60%;
+}
+
+.task-box #dropdown-1{
+    top: 5%;
+    left: 40%;
+}
