@@ -4,6 +4,10 @@
     --red-listed: #ff6347;
 }
 
+.btn-red{
+    background-color: var(--red-listed);
+}
+
 .bg-white{
     background-color: var(--white);
 }
@@ -41,4 +45,11 @@
 .task-box #dropdown-1{
     top: 5%;
     left: 40%;
+}
+
+.modal-select{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: var(--red-listed);
+    color: #fff;
 }

@@ -28,13 +28,14 @@
                                         <b-dropdown-item v-if="task.status == 1" @click="updateStatus(task)">In Progress</b-dropdown-item>
                                         <b-dropdown-item v-if="task.status == 2"  @click="updateStatus(task)">Done</b-dropdown-item>
                                         <b-dropdown-item @click="deleteTask(task)">Delete</b-dropdown-item>
+                                        <b-dropdown-item @click="showPriorityModal(task)" v-if="task.status == 2 || task.status == 1">Update Priority</b-dropdown-item>
                                     </b-dropdown>
                                 </div>
                                <div :ref="task.id" class="d-none">
                                     <form  @submit.prevent="editTasks(task)">
                                         <div class="form-group">
-                                            <input v-model="editTask.title" type="text" class="form-control" >
-                                            <button  type="submit">Edit</button>
+                                            <input v-model="editTask.title" type="text" class="form-control my-2" >
+                                            <button class="btn btn-red align-items-right"  type="submit">Edit</button>
                                         </div>
                                     </form>
                                </div>
@@ -45,6 +46,33 @@
             </div>
             </div>
         </div>
+
+            <!-- Modal -->
+            <div ref="modal" class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Priority</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="" >
+                        <select v-model="modalTask.prioritySelect" class="modal-select" style="width:200px;">
+                            <option value="0" disabled selected>Select:</option>
+                            <option value="3">High</option>
+                            <option value="1">Normal</option>
+                            <option value="2">Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="closeModal">Close</button>
+                    <button type="button" class="btn btn-red" @click="updatePriority()">Update</button>
+                </div>
+                </div>
+            </div>
+            </div>
     </div>
 </template>
 
@@ -67,6 +95,10 @@
                     title: ""
                 },
                 errorMessage:"",
+                modalTask: {
+                    id: null,
+                    prioritySelect: 0
+                },
             }
         },
         created() {
@@ -139,6 +171,26 @@
                     .catch(err => {
 
                     });
+            },
+            showPriorityModal(task){
+                this.modalTask.id = task.id
+                this.$refs.modal.classList.add("d-block");
+            },
+            closeModal(){
+                this.$refs.modal.classList.remove("d-block");
+            },
+            updatePriority(){
+
+                axios
+                    .post('/tasks/priority-update', {priorityTask:this.modalTask})
+                    .then(res => {
+                        this.tasks = res.data.tasks
+                        this.$refs.modal.classList.remove("d-block");
+                    })
+                    .catch(err => {
+
+                    });
+
             }
         }
     }

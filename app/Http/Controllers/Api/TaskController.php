@@ -133,4 +133,14 @@ class TaskController extends Controller
 
         return response()->json(['status' => 'success', 'message'=>'Task Updated Sucessfully']);
     }
+    public function priority_update(Request $request){
+
+        $task = Task::where('id',$request->task_id)->first();
+
+        $priority = (int)$request->priority;
+        $task->priority = $priority;
+        $task->save();
+
+        return response()->json(['status' => 'success', 'message'=>'Task Updated Sucessfully']);
+    }
 }

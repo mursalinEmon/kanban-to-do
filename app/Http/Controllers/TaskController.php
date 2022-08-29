@@ -17,7 +17,7 @@ class TaskController extends Controller
     public function index()
     {
         $statuses = Status::all();
-        $all_tasks = Task::all();
+        $all_tasks = Task::orderBy('updated_at', 'DESC')->orderBy('priority', 'DESC')->get();
         // dd($statuses);
         return view('tasks.index', compact('statuses','all_tasks'));
     }
@@ -41,17 +41,11 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $newTask = $request->newTask;
-        $last_task_order = Task::latest()->get()[0];
-        if($last_task_order){
-            $order = $last_task_order->order + 1;
-        }else{
-            $order = 0;
-        }
+
         $task = new Task();
         $userId = Auth::id();
         $task->created_by = $userId ;
         $task->title = $newTask['title'];
-        $task->order = $order;
         $task->status = 1;
         $task->save();
 
@@ -94,7 +88,7 @@ class TaskController extends Controller
             'title' => $request->editTask['title']
         ]);
 
-        $all_tasks = Task::all();
+        $all_tasks = Task::orderBy('updated_at', 'DESC')->orderBy('priority', 'DESC')->get();
         return response()->json(['status' => 'success', 'tasks'=> $all_tasks, 'message'=>'Task Updated Sucessfully']);
 
     }
@@ -130,7 +124,19 @@ class TaskController extends Controller
 
         $task->save();
 
-        $all_tasks = Task::all();
+        $all_tasks = Task::orderBy('updated_at', 'DESC')->orderBy('priority', 'DESC')->get();
+        return response()->json(['status' => 'success', 'tasks'=> $all_tasks, 'message'=>'Task Updated Sucessfully']);
+    }
+    public function priority_update(Request $request){
+
+        $priority_task = $request->priorityTask;
+        $task = Task::where('id',$priority_task['id'])->first();
+
+        $priority = (int)$priority_task['prioritySelect'];
+        $task->priority = $priority;
+        $task->save();
+
+        $all_tasks = Task::orderBy('updated_at', 'DESC')->orderBy('priority', 'DESC')->get();
         return response()->json(['status' => 'success', 'tasks'=> $all_tasks, 'message'=>'Task Updated Sucessfully']);
     }
 }

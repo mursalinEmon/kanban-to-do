@@ -24,6 +24,7 @@ Route::group(['as' => 'api.'], function () {
     Route::post('tasks/store', [TaskController::class, 'store'])->name('tasks.store');
     Route::post('tasks/update', [TaskController::class, 'update'])->name('tasks.update');
     Route::post('tasks/destroy', [TaskController::class, 'destroy'])->name('tasks.destroy');
-    Route::post('tasks/status-update', [TaskController::class, 'status_update'])->name('tasks.status-pdate');
+    Route::post('tasks/status-update', [TaskController::class, 'status_update'])->name('tasks.status-update');
+    Route::post('tasks/priority-update', [TaskController::class, 'priority_update'])->name('tasks.priority-update');
 });
 

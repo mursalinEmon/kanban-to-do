@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('tasks', TaskController::class);
     Route::post('tasks/sync', [TaskController::class, 'sync'])->name('tasks.sync');
     Route::post('tasks/status-update', [TaskController::class, 'status_update'])->name('tasks.status-update');
+    Route::post('tasks/priority-update', [TaskController::class, 'priority_update'])->name('tasks.priority-update');
 });
 
 Auth::routes();
