@@ -46,7 +46,9 @@
     top: 5%;
     left: 40%;
 }
-
+.modal-custom{
+    top: 30%!important;
+}
 .modal-select{
     padding-top: 4px;
     padding-bottom: 4px;

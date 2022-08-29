@@ -17,7 +17,7 @@ class TaskController extends Controller
     public function index()
     {
         $statuses = Status::all();
-        $all_tasks = Task::orderBy('updated_at', 'DESC')->orderBy('priority', 'DESC')->get();
+        $all_tasks = Task::orderBy('priority', 'DESC')->orderBy('updated_at', 'DESC')->get();
         // dd($statuses);
         return view('tasks.index', compact('statuses','all_tasks'));
     }
@@ -88,7 +88,7 @@ class TaskController extends Controller
             'title' => $request->editTask['title']
         ]);
 
-        $all_tasks = Task::orderBy('updated_at', 'DESC')->orderBy('priority', 'DESC')->get();
+        $all_tasks = Task::all();
         return response()->json(['status' => 'success', 'tasks'=> $all_tasks, 'message'=>'Task Updated Sucessfully']);
 
     }
@@ -124,7 +124,7 @@ class TaskController extends Controller
 
         $task->save();
 
-        $all_tasks = Task::orderBy('updated_at', 'DESC')->orderBy('priority', 'DESC')->get();
+        $all_tasks = Task::orderBy('priority', 'DESC')->orderBy('updated_at', 'DESC')->get();
         return response()->json(['status' => 'success', 'tasks'=> $all_tasks, 'message'=>'Task Updated Sucessfully']);
     }
     public function priority_update(Request $request){
@@ -136,7 +136,7 @@ class TaskController extends Controller
         $task->priority = $priority;
         $task->save();
 
-        $all_tasks = Task::orderBy('updated_at', 'DESC')->orderBy('priority', 'DESC')->get();
+        $all_tasks = Task::orderBy('priority', 'DESC')->orderBy('updated_at', 'DESC')->get();
         return response()->json(['status' => 'success', 'tasks'=> $all_tasks, 'message'=>'Task Updated Sucessfully']);
     }
 }

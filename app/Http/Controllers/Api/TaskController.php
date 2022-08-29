@@ -39,17 +39,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $last_task_order = Task::latest()->get()[0];
-        if($last_task_order){
-            $order = $last_task_order->order + 1;
-        }else{
-            $order = 0;
-        }
+
         $task = new Task();
         $task->created_by = $request->user_id ;
         $task->title = $request->title;
-        $task->order = $order;
         $task->status = 1;
         $task->save();
 

@@ -5,15 +5,15 @@
             @submit.prevent="addNewTask"
         >
             <div class="d-flex  pt-3 pb-3 justify-content-center align-items-center text-center">
-                <div class="d-flex justify-content-center align-items-center text-center col-6">
+                <div class="d-flex justify-content-center align-items-center text-center col-lg-6 col-md-6 col-sm-12">
                     <input v-model="newTask.title" type="text" placeholder="Write your task ..." class="col-6 mx-2 py-2 bg-white">
                     <button class="col-2 mx-2 py-2 bg-white text-red fs-16 fw-600" type="submit">Add</button>
                 </div>
             </div>
         </form>
         <div class="container d-flex justify-content-center align-items-center col pt-3">
-            <div class="d-flex justify-content-center align-items-top text-center col-9">
-                <div v-for="(status,i) in allStatus" :key="i" class="col-4 justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-top text-center col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div v-for="(status,i) in allStatus" :key="i" class="col-lg-4 col-md-4 col-sm-12 col-xs-12 justify-content-center align-items-center">
                 <div class="card rounded-0">
                     <div class="card-header text-center fs-22 fw-600 rounded-0">
                         {{status.title}}
@@ -48,7 +48,7 @@
         </div>
 
             <!-- Modal -->
-            <div ref="modal" class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div ref="modal" class="modal modal-custom" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
