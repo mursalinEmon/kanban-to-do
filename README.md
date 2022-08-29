@@ -26,12 +26,14 @@ API Instructions
 Get All Tasks:-
 
 Routes:(GET)
+
 http://127.0.0.1:8000/api/tasks
 
 
 Store Task:-
 
 Routes:(POST)
+
 http://127.0.0.1:8000/api/tasks/store
 
 Body:
@@ -43,6 +45,7 @@ Body:
 Update Task:-
 
 Routes:(POST)
+
 http://127.0.0.1:8000/api/tasks/update
 
 Body:
@@ -55,6 +58,7 @@ Body:
 Delete Task:-
 
 Routes:(POST)
+
 http://127.0.0.1:8000/api/tasks/destroy
 
 Body:
@@ -65,6 +69,7 @@ Body:
 Update Task Status:-
 
 Routes:(POST)
+
 http://127.0.0.1:8000/api/tasks/status-update
 
 Body:
@@ -75,6 +80,7 @@ Body:
 Update Task Priority:-
 
 Routes:(POST)
+
 http://127.0.0.1:8000/api/tasks/priority-update
 
 Body:
